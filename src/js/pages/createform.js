@@ -12,7 +12,7 @@ export default class CreateForm extends React.Component{
     openAddFieldsModal(e){
         e.preventDefault();
        // console.log(<AddFields />);
-        return (<AddFields />);
+      //  return (<AddFields />);
         
     }
 
