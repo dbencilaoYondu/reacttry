@@ -7,12 +7,14 @@ import Layout from './components/layout'
 import ClientBook from './pages/clientbook'
 import CreateForm from './pages/createform'
 import ViewForm from './pages/viewform'
+import Summary from './pages/summary'
 
 const donTest = document.getElementById('dontest');
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={Layout}>
-            <IndexRoute component={CreateForm}></IndexRoute>
+            <IndexRoute component={Summary}></IndexRoute>
+            <Route path="summary" component={Summary}></Route>
             <Route path="createform" component={CreateForm}></Route>
             <Route path="viewform" component={ViewForm}></Route>
             <Route path="clientbook" component={ClientBook}></Route>

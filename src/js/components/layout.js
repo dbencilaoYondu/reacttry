@@ -15,7 +15,7 @@ export default class Layout extends React.Component{
         return (
             <div className="layout container">
                 <Header title="Form" 
-                        menus={[{title:'Client Book',path:'clientbook'}]}
+                        menus={[{title:'Summary',path:'summary'},{title:'Client Book',path:'clientbook'}]}
                         dropdownTitle="Forms" 
                         dropdownMenu={[{title:'Create',path:'createform'},{title:'View',path:'viewform'}]} />
                 <div className="container">  

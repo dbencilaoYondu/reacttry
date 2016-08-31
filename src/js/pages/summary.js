@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormGroup, FormControl,Modal,Button} from 'react-bootstrap';
 
-export default class ViewForm extends React.Component{
+export default class Summary extends React.Component{
     
     constructor(props){
         super(props);
@@ -16,7 +16,7 @@ export default class ViewForm extends React.Component{
            
         return (
             <div>
-                <h1>View Form</h1>
+                <h1>Summary</h1>
             </div>
             );
     }
