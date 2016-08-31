@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormGroup, FormControl,Modal,Button} from 'react-bootstrap';
-import RU from 'react-utils-helper/lib';
 import AddFields from '../components/addFields';
 
 export default class CreateForm extends React.Component{
@@ -17,7 +16,7 @@ export default class CreateForm extends React.Component{
     openAddFieldsModal(e){
         e.preventDefault();
        // this.state.showModal = !this.state.showModal;
-        
+        this.setState({showModal:true})
         console.log(this.state);
       //  return (<AddFields />);
         
@@ -28,21 +27,21 @@ export default class CreateForm extends React.Component{
     }
 
     render(){
-        
+            let toggleModal = e => { this.setState({showModal : !this.state.showModal})}
         return (
             <div className="createForm">
+                <h1>Create Form</h1>
                 <form>
-                    <h1>Create Form</h1>
                     <FormGroup>
                         <FormControl type="text" placeholder="Form title" />
                     </FormGroup>
                      <Button  bsStyle="primary"
                         bsSize="large"
-                        onClick={this.openAddFieldsModal.bind(this)}>open modal
+                        onClick={this.openAddFieldsModal.bind(this)}>Add a field
                     </Button>
                 </form>
-                //use react-utils here, to show and hide something
                
+                { this.state.showModal ? <AddFields close={toggleModal}/> : null }
             </div>
             );
     }

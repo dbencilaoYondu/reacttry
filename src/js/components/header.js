@@ -23,7 +23,7 @@ export default class Header extends React.Component{
     renderDropDown(){
         return this.props.dropdownMenu.map(function(item,index){
             return (
-                <MenuItem key={index}>{item}</MenuItem>
+                <li key={index}><Link to={item.path}>{item.title}</Link></li>
             );
         });
     }
