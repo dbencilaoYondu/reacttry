@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormGroup, FormControl,Modal,Button} from 'react-bootstrap';
 import AddFields from '../components/addFields';
+import Field from '../components/fields';
 
 export default class CreateForm extends React.Component{
     
     constructor(props){
         super(props);
         this.state = {
-            showModal:false
+            showModal:false,
+            elements:[]
         }
         
     }
@@ -21,11 +23,12 @@ export default class CreateForm extends React.Component{
       //  return (<AddFields />);
         
     }
-
-    close(){
-        this.state.showModal = false;
+    addElement(e){
+        console.log(e)
+        let elementArray = this.state.elements.slice();
+        elementArray.push(e)
+        this.setState({elements:elementArray})
     }
-
     render(){
             let toggleModal = e => { this.setState({showModal : !this.state.showModal})}
         return (
@@ -40,8 +43,12 @@ export default class CreateForm extends React.Component{
                         onClick={this.openAddFieldsModal.bind(this)}>Add a field
                     </Button>
                 </form>
-               
-                { this.state.showModal ? <AddFields close={toggleModal}/> : null }
+                <hr/>
+                <h2>Form goes here</h2>
+                <form >
+                    <Field fields={this.state.elements} />
+                </form>
+                { this.state.showModal ? <AddFields close={toggleModal} add={this.addElement}/> : null }
             </div>
             );
     }

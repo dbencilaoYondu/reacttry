@@ -16,6 +16,9 @@ export default class AddFields extends React.Component{
         this.setState({value:event.target.value})
         console.log(event.target.value);
     }
+    addField(){
+        this.props.add(this.state.value);
+    }
     render(){
 
         const selectionFormat = () => {
@@ -45,14 +48,14 @@ export default class AddFields extends React.Component{
                                 <option value="6">static text</option>
                             </FormControl>
                         </FormGroup> 
-                        {this.state.value == 1 ? <input type="text" name="" placeholder="type text box label here" /> : null}
-                        {this.state.value == 2 ? <textarea name="" placeholder="type text box label here" /> : null}
+                        {this.state.value == 1 ? <input type="text" name="" placeholder="Field name" /> : null}
+                        {this.state.value == 2 ? <textarea name="" placeholder="Field name" /> : null}
                         {this.state.value == 3 ? selectionFormat : null}
                     </Modal.Body>
 
                     <Modal.Footer>
                         <Button onClick={this.onHide.bind(this)}>Close</Button>
-                        <Button bsStyle="primary">add</Button>
+                        <Button bsStyle="primary" onClick={this.addField.bind(this)}>add</Button>
                     </Modal.Footer>
 
                 </Modal.Dialog>
