@@ -16,11 +16,11 @@ export default class Layout extends React.Component{
             <div className="layout container">
                 <Header title="Form" 
                         menus={[{title:'Summary',path:'summary'},{title:'Client Book',path:'clientbook'}]}
-                        dropdownTitle="Forms" 
+                        dropdownTitle="Form" 
                         dropdownMenu={[{title:'Create',path:'createform'},{title:'View',path:'viewform'}]} />
                 <div className="container">  
                     {this.props.children}
-                    {this.testFunction()}
+                    
                 </div>
             </div>
         

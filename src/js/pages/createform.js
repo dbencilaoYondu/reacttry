@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {FormGroup, FormControl,Modal,Button} from 'react-bootstrap';
+import {FormGroup, FormControl,Modal,Button, ControlLabel } from 'react-bootstrap';
 import AddFields from '../components/addFields';
 import Field from '../components/fields';
 
@@ -10,45 +10,57 @@ export default class CreateForm extends React.Component{
         super(props);
         this.state = {
             showModal:false,
+            fieldType:'short text box',
             elements:[]
         }
-        
     }
 
-    openAddFieldsModal(e){
-        e.preventDefault();
-       // this.state.showModal = !this.state.showModal;
-        this.setState({showModal:true})
-        console.log(this.state);
-      //  return (<AddFields />);
-        
+    changeSelect(event){
+        this.setState({fieldType:event.target.value})
+        console.log(event.target.value);
     }
+
     addElement(e){
-        console.log(e)
-        let elementArray = this.state.elements.slice();
-        elementArray.push(e)
-        this.setState({elements:elementArray})
+        e.preventDefault()
+        console.log(this.state.fieldType)
+    }
+    showFormElements(){
+
     }
     render(){
             let toggleModal = e => { this.setState({showModal : !this.state.showModal})}
         return (
-            <div className="createForm">
-                <h1>Create Form</h1>
-                <form>
-                    <FormGroup>
-                        <FormControl type="text" placeholder="Form title" />
-                    </FormGroup>
-                     <Button  bsStyle="primary"
-                        bsSize="large"
-                        onClick={this.openAddFieldsModal.bind(this)}>Add a field
-                    </Button>
-                </form>
-                <hr/>
-                <h2>Form goes here</h2>
-                <form >
-                    <Field fields={this.state.elements} />
-                </form>
-                { this.state.showModal ? <AddFields close={toggleModal} add={this.addElement}/> : null }
+            <div className="createForm row">
+                <div className="left createForm col-sm-6">
+                    <h1>Create Form</h1>
+                    <form onSubmit={this.addElement.bind(this)}>
+                        <FormGroup controlId="formControlsSelect">
+                            <ControlLabel>Select Field</ControlLabel>
+                            <FormControl componentClass="select" onChange={this.changeSelect.bind(this)} placeholder="select">
+                                <option>short text box</option>
+                                <option>long text box</option>
+                                <option>selection</option>
+                                <option>checkbox</option>
+                                <option>product list</option>
+                                <option>static text</option>
+                            </FormControl>
+                        </FormGroup> 
+                        <FormGroup controlId="formBasicText">
+                            <ControlLabel>Field Name</ControlLabel>
+                            <FormControl
+                                type="text"
+                                value={this.state.fieldName}
+                                placeholder="Enter text"
+                            />
+                        </FormGroup>
+                        <button class="btn" type="submit">add field</button>
+                    </form>
+                </div>
+                <div className="right viewForm col-sm-6">
+                    form goes here...
+                    {this.showFormElements()}
+                </div>
+                
             </div>
             );
     }
