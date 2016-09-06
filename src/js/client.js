@@ -10,6 +10,8 @@ import AllReducers from './reducers'
 let store = createStore(AllReducers)
 
 console.log(store);
+let stateObj = store.getState()
+console.log(stateObj.clients);
 import ClientBook from './pages/clientbook'
 import CreateForm from './pages/createform'
 import ViewForm from './pages/viewform'

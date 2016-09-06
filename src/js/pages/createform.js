@@ -4,7 +4,12 @@ import {FormGroup, FormControl,Modal,Button, ControlLabel } from 'react-bootstra
 import AddFields from '../components/addFields';
 import Field from '../components/fields';
 
-export default class CreateForm extends React.Component{
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import {addField} from '../actions/addField'
+
+
+class CreateForm extends React.Component{
     
     constructor(props){
         super(props);
@@ -13,6 +18,7 @@ export default class CreateForm extends React.Component{
             fieldType:'short text box',
             elements:[]
         }
+        console.log(this.props)
     }
 
     changeSelect(event){
@@ -53,7 +59,7 @@ export default class CreateForm extends React.Component{
                                 placeholder="Enter text"
                             />
                         </FormGroup>
-                        <button class="btn" type="submit">add field</button>
+                        <button class="btn" type="submit" onClick={() => this.props.addField()}>add field</button>
                     </form>
                 </div>
                 <div className="right viewForm col-sm-6">
@@ -65,3 +71,15 @@ export default class CreateForm extends React.Component{
             );
     }
 }
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({
+        addField:addField
+    },dispatch)
+}
+function mapStateToProps(state){
+    return {
+        clients:state.clients
+    }
+}
+export default connect(mapStateToProps,matchDispatchToProps)(CreateForm)

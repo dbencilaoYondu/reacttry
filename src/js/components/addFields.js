@@ -1,13 +1,17 @@
 import React from 'react';
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import {Modal,Button,FormGroup,ControlLabel,FormControl} from 'react-bootstrap';
+import {addField} from '../actions/addField'
 
 
-export default class AddFields extends React.Component{
+class AddFields extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             value:1
         }
+       
     }
     onHide(){
         this.props.close();
@@ -63,3 +67,10 @@ export default class AddFields extends React.Component{
         );
     }
 }; 
+
+function matchDispatchToProps(dispatch){
+    return bindActionCreators({
+        addField:addField
+    },dispatch)
+}
+export default connect(matchDispatchToProps)(AddFields)

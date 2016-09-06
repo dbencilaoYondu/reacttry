@@ -1,7 +1,9 @@
 import React from 'react';
 import ClientList from '../containers/clientsList'
 
-export default class ClientBook extends React.Component{
+
+
+class ClientBook extends React.Component{
     
     render(){
         return (
@@ -12,3 +14,5 @@ export default class ClientBook extends React.Component{
             );
     }
 }
+
+export default ClientBook
