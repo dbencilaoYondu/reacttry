@@ -16,6 +16,7 @@ class CreateForm extends React.Component{
         this.state = {
             showModal:false,
             fieldType:'short text box',
+            fieldName:'',
             elements:[]
         }
         console.log(this.props)
@@ -39,7 +40,14 @@ class CreateForm extends React.Component{
             <div className="createForm row">
                 <div className="left createForm col-sm-6">
                     <h1>Create Form</h1>
-                    <form onSubmit={this.addElement.bind(this)}>
+                    <form onSubmit={() => {
+                            let x = 'boom!'
+                            this.props.addField({
+                                fieldType:this.state.fieldType,
+                                fieldName:this.state.fieldName
+                            })
+                        }
+                        }>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel>Select Field</ControlLabel>
                             <FormControl componentClass="select" onChange={this.changeSelect.bind(this)} placeholder="select">
@@ -59,7 +67,7 @@ class CreateForm extends React.Component{
                                 placeholder="Enter text"
                             />
                         </FormGroup>
-                        <button class="btn" type="submit" onClick={() => this.props.addField()}>add field</button>
+                        <button class="btn" type="submit">add field</button>
                     </form>
                 </div>
                 <div className="right viewForm col-sm-6">
@@ -74,7 +82,7 @@ class CreateForm extends React.Component{
 
 function matchDispatchToProps(dispatch){
     return bindActionCreators({
-        addField:addField
+        addField:addField      
     },dispatch)
 }
 function mapStateToProps(state){

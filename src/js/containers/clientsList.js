@@ -32,7 +32,7 @@ class ClientList extends Component{
                         <th>Username</th>
                         <th>Email</th>
                     </tr>
-                    {this.showListOfClients(this.props)}
+                    {this.showListOfClients()}
                 </tbody>
             </table>
         )
