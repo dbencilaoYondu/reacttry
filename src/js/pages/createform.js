@@ -19,6 +19,7 @@ class CreateForm extends React.Component{
             fieldName:'',
             elements:[]
         }
+        console.log(this.state  )
         console.log(this.props)
     }
 
@@ -26,7 +27,10 @@ class CreateForm extends React.Component{
         this.setState({fieldType:event.target.value})
         console.log(event.target.value);
     }
-
+    inputName(event){
+        this.setState({fieldName:event.target.value})
+        console.log(event.target.value)
+    }
     addElement(e){
         e.preventDefault()
         console.log(this.state.fieldType)
@@ -35,17 +39,20 @@ class CreateForm extends React.Component{
 
     }
     render(){
-            let toggleModal = e => { this.setState({showModal : !this.state.showModal})}
+           
         return (
             <div className="createForm row">
                 <div className="left createForm col-sm-6">
                     <h1>Create Form</h1>
-                    <form onSubmit={() => {
+                    <form onSubmit={(e) => {
                             let x = 'boom!'
+                            e.preventDefault();
                             this.props.addField({
                                 fieldType:this.state.fieldType,
                                 fieldName:this.state.fieldName
                             })
+                             console.log(this.state)
+                             console.log(this.props)
                         }
                         }>
                         <FormGroup controlId="formControlsSelect">
@@ -63,7 +70,7 @@ class CreateForm extends React.Component{
                             <ControlLabel>Field Name</ControlLabel>
                             <FormControl
                                 type="text"
-                                value={this.state.fieldName}
+                                onChange={this.inputName.bind(this)}
                                 placeholder="Enter text"
                             />
                         </FormGroup>
@@ -87,7 +94,8 @@ function matchDispatchToProps(dispatch){
 }
 function mapStateToProps(state){
     return {
-        clients:state.clients
+        clients:state.clients,
+        fields:state.addField
     }
 }
 export default connect(mapStateToProps,matchDispatchToProps)(CreateForm)
