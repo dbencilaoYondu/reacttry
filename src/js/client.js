@@ -4,11 +4,11 @@ import {createStore} from "redux"
 import {Provider} from 'react-redux'
 import { Router, IndexRoute, Route, Link,Redirect, hashHistory } from 'react-router'
 import Layout from './components/layout'
-
+import $ from './lib/jqueryAjax.min'
 import AllReducers from './reducers'
 
 let store = createStore(AllReducers)
-
+console.log($)
 console.log(store);
 let stateObj = store.getState()
 console.log(stateObj.clients);

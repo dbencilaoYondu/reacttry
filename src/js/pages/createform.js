@@ -1,28 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormGroup, FormControl,Modal,Button, ControlLabel } from 'react-bootstrap';
-import AddFields from '../components/addFields';
 import Field from '../components/fields';
 
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {addField} from '../actions/addField'
 
-
+let fields = []
 class CreateForm extends React.Component{
     
     constructor(props){
         super(props);
         this.state = {
-            showModal:false,
             fieldType:'short text box',
             fieldName:'',
-            elements:[]
+            fields:[]
         }
         console.log(this.state  )
-        console.log(this.props)
+        console.log(this.props) 
     }
-
+   
     changeSelect(event){
         this.setState({fieldType:event.target.value})
         console.log(event.target.value);
@@ -34,9 +32,21 @@ class CreateForm extends React.Component{
     addElement(e){
         e.preventDefault()
         console.log(this.state.fieldType)
+        
+        fields.push({
+            fieldType:this.state.fieldType,
+            fieldName:this.state.fieldName
+        })
+        console.log(fields)
+        this.setState({fields:fields})
+
+            console.log(this.state)
+            console.log(this.props)
     }
     showFormElements(){
-
+        return this.state.fields.map(function(field){
+           return '...'
+        })
     }
     render(){
            
@@ -44,17 +54,7 @@ class CreateForm extends React.Component{
             <div className="createForm row">
                 <div className="left createForm col-sm-6">
                     <h1>Create Form</h1>
-                    <form onSubmit={(e) => {
-                            let x = 'boom!'
-                            e.preventDefault();
-                            this.props.addField({
-                                fieldType:this.state.fieldType,
-                                fieldName:this.state.fieldName
-                            })
-                             console.log(this.state)
-                             console.log(this.props)
-                        }
-                        }>
+                    <form onSubmit={this.addElement.bind(this)}>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel>Select Field</ControlLabel>
                             <FormControl componentClass="select" onChange={this.changeSelect.bind(this)} placeholder="select">
