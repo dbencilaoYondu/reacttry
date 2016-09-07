@@ -44,8 +44,11 @@ class CreateForm extends React.Component{
             console.log(this.props)
     }
     showFormElements(){
-        return this.state.fields.map(function(field){
-           return '...'
+        return this.state.fields.map(function(field,index){
+           return <FormGroup key={index}>
+                        <ControlLabel>{field.fieldName}</ControlLabel>
+                        <FormControl type="text"/>
+                  </FormGroup>
         })
     }
     render(){
@@ -78,7 +81,6 @@ class CreateForm extends React.Component{
                     </form>
                 </div>
                 <div className="right viewForm col-sm-6">
-                    form goes here...
                     {this.showFormElements()}
                 </div>
                 
